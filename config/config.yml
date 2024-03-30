@@ -1,0 +1,11 @@
+env: local
+logger:
+  log_level: 'debug'
+server:
+  port: ':8080'
+  read_timeout: 60
+  write_timeout: 60
+rabbitmq:
+  exchange: "emails"
+  exchange_type: "direct"
+  queue: "user_emails"

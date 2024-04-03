@@ -39,10 +39,6 @@ func Run(cfg *config.Config) {
         l.Error(err)
         return
     }
-    if err != nil {
-        l.Error(err)
-        return
-    }
     rmqConn, err := rabbitmq.New(rabbitmq.Config{
 		URL:      cfg.RabbitMQ.URL,
 		WaitTime: 5 * time.Second,
@@ -65,14 +61,12 @@ func Run(cfg *config.Config) {
         Hasher:          hasher,
         TokenManager:    tokenManager,
         QueueConn: rmqConn,
-        AccessTokenTTL:  time.Minute * 10,
+        AccessTokenTTL:  time.Minute * 1,
         RefreshTokenTTL: time.Hour * 24 * 7,
     })
 
     handlers := http.NewHandler(services, tokenManager)
     srv := server.NewServer(cfg, handlers.Init(l))
-
-    fmt.Println(cfg.RabbitMQ.Exchange)
     
 
     go func() {

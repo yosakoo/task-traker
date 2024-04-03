@@ -15,7 +15,4 @@ COPY --from=builder /app/config /config
 COPY --from=builder /app/migrations /migrations
 COPY --from=builder /bin/app /app
 
-
-ENV PG_URL="postgres://postgres:qwe1plm7@postgres:5432/task-traker"
-
 CMD ["/app"]

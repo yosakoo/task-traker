@@ -44,6 +44,6 @@ func NewConfig() (*Config, error) {
 
 	cfg.PG.URL = os.Getenv("PG_URL")
 	cfg.RabbitMQ.URL = os.Getenv("RABBITMQ_URL")
-
+	fmt.Println(cfg.PG.URL)
 	return cfg, nil
 }
